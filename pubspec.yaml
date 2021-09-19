@@ -31,7 +31,6 @@ dependencies:
   http:
   simple_animations: ^1.3.3
   bubble_bottom_bar: ^1.2.0
-  salomon_bottom_bar: ^2.0.0
   like_button: ^0.2.0
   image_downloader: ^0.20.1
   overlay_support: ^1.0.4
@@ -51,25 +50,29 @@ dependencies:
   connectivity:
   data_connection_checker:
   fluttertoast:
-  animate_do:
+# provide some cool, animated progress indicators
   progress_indicators:
-  flutter_html:
-  flutter_native_splash: ^1.1.8+4
-  flutter_statusbarcolor: ^0.2.3
+# An image library for showing placeholders and transform your image( use with  CachedNetworkImage)
   octo_image:
-  path_provider:
-  path_provider_macos:
-  flowder:
-  glass_kit:
+# to create animations in Splash Screen
   animated_splash_screen: ^1.1.0
   velocity_x: ^3.3.0
+# To connect the feedback form to firebase and store it
   cloud_firestore: ^2.5.2
   firebase_core: ^1.0.3
+# create a circular profile picture in About Developers
   circular_profile_avatar: ^2.0.5
+# Icons for the application.
   font_awesome_flutter: ^8.2.0
+# Download or save images to gallery
   image_gallery_saver:
   dio:
   permission_handler:
+  path_provider:
+# Share the Application through Whatsapp or other sites.
+  share: any
+#payment gateways plugin
+  razorpay_flutter: ^1.2.7
 
 
 dev_dependencies:

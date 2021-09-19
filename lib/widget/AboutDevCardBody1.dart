@@ -29,7 +29,7 @@ class _AboutDevBody1State extends State<AboutDevBody1> {
               child: Text("Abhijit Biswas",style: TextStyle(color: Colors.white,fontSize: 15,letterSpacing: 2),),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 155.0,right: 110.0,bottom: 10.0),
+              padding: const EdgeInsets.only(left: 155.0,right: 110.0),
               child: Text("Developer",style: TextStyle(color: Colors.white,fontSize: 12,letterSpacing: 2),),
             ),
             SizedBox(height: 10.0,),

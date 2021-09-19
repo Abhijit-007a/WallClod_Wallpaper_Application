@@ -15,5 +15,6 @@ class FavImage {
     this.small,
     this.thumb,
     this.blurHash,
+
   );
 }

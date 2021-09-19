@@ -8,6 +8,8 @@ class AboutDevCard1 extends StatefulWidget {
 }
 
 class _AboutDevCard1State extends State<AboutDevCard1> {
+
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -15,7 +17,7 @@ class _AboutDevCard1State extends State<AboutDevCard1> {
         Padding(
           padding: const EdgeInsets.only(top: 0, left: 15,right: 15,bottom: 5.0),
           child: Container(
-            height: 285,
+            height: MediaQuery.of(context).size.height * 0.35,
             decoration: new BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(20),),

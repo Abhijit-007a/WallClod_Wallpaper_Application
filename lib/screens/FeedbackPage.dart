@@ -41,105 +41,107 @@ class _FeedbackPageState extends State<FeedbackPage> {
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(
-                  right: 12.0, top: 20.0, bottom: 12.0, left: 50.0),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.feedback,
-                    color: Colors.yellowAccent,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(
+                    right: 12.0, top: 20.0, bottom: 5.0, left: 55.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.feedback,
+                      color: Colors.yellowAccent,
+                    ),
+                    SizedBox(width: 10.0,),
+                    Text("Help and support Center",
+                      style: TextStyle(
+                        fontSize: 17,
+                        letterSpacing: 3,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: sampledata1,
+                  style: TextStyle(color: Colors.white),
+                  validator: (String value) {
+                    if (value.isEmpty ||value == null) {
+                      return 'Topic cannot be empty';
+                    } else if (value.length < 3) {
+                      return 'Topic must be at least 3 characters long.';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Title of discussion' ,
+                    hintStyle: TextStyle(fontSize: 11,color: Colors.white54),
+                    prefixIcon: const Icon(Icons.topic, color: Colors.yellowAccent,),
+                    labelText: 'Topic',labelStyle: TextStyle(fontSize: 12,color: Colors.white),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),),
                   ),
-                  SizedBox(width: 10.0,),
-                  Text("Help and support Center",
-                    style: TextStyle(
-                      fontSize: 17,
-                      letterSpacing: 3,
-                      color: Colors.white,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: sampledata2,
+                  style: TextStyle(color: Colors.white),
+                  validator: (String value) {
+                    if (value.isEmpty || value == null) {
+                      return 'Comments cannot be empty';
+                    } else if (value.length < 3) {
+                      return 'Comments must be at least 3 characters long.';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'We would be more than happy to hear from you' ,
+                    hintStyle: TextStyle(fontSize: 11,color: Colors.white54),
+                    prefixIcon: const Icon(Icons.help_center, color: Colors.yellowAccent,),
+                    labelText: 'Comments',labelStyle: TextStyle(fontSize: 12,color: Colors.white),
+                    helperText: "Please keep it short and to the point",
+                    helperStyle: TextStyle(fontSize: 10,color: Colors.white30),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(color: Colors.white),
                     ),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: sampledata1,
-                style: TextStyle(color: Colors.white),
-                validator: (String value) {
-                  if (value.isEmpty ||value == null) {
-                    return 'Topic cannot be empty';
-                  } else if (value.length < 3) {
-                    return 'Topic must be at least 3 characters long.';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'Title of discussion' ,
-                  hintStyle: TextStyle(fontSize: 11,color: Colors.white54),
-                  prefixIcon: const Icon(Icons.topic, color: Colors.yellowAccent,),
-                  labelText: 'Topic',labelStyle: TextStyle(fontSize: 12,color: Colors.white),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),),
+                  maxLines: 5,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: sampledata2,
-                style: TextStyle(color: Colors.white),
-                validator: (String value) {
-                  if (value.isEmpty || value == null) {
-                    return 'Comments cannot be empty';
-                  } else if (value.length < 3) {
-                    return 'Comments must be at least 3 characters long.';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'We would be more than happy to hear from you' ,
-                  hintStyle: TextStyle(fontSize: 11,color: Colors.white54),
-                  prefixIcon: const Icon(Icons.help_center, color: Colors.yellowAccent,),
-                  labelText: 'Comments',labelStyle: TextStyle(fontSize: 12,color: Colors.white),
-                  helperText: "Please keep it short and to the point",
-                  helperStyle: TextStyle(fontSize: 10,color: Colors.white30),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                ),
-                maxLines: 5,
-              ),
-            ),
 
-            SizedBox(height: 15.0,),
-            Center(
-              child: ElevatedButton(
-                onPressed: () async{
-                  saveFeedback();
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.yellowAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                      side: BorderSide(color: Colors.yellow,width: 2)
+              SizedBox(height: 15.0,),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () async{
+                    saveFeedback();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.yellowAccent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                        side: BorderSide(color: Colors.yellow,width: 2)
+                    ),
+                    shadowColor: Colors.yellow,
+                    elevation: 7,
                   ),
-                  shadowColor: Colors.yellow,
-                  elevation: 7,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 10.0),
-                  child: Text("Submit",style: TextStyle(fontSize: 15,color: Colors.black),),
-                ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 10.0),
+                    child: Text("Submit",style: TextStyle(fontSize: 15,color: Colors.black),),
+                  ),
 
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       ),

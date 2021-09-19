@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FavImageDatabaseHelper {
-  static final _databaseName = "chitr.db";
+  static final _databaseName = "Wallclod.db";
   static final _databaseVersion = 5;
 
   static final table = 'fav_images';

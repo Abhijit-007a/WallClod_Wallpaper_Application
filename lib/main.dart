@@ -38,7 +38,8 @@ class MyApp extends StatelessWidget {
             child: ChangeNotifierProvider(
             create: (_) => ThemeNotifier(),
     child: Consumer<ThemeNotifier>(
-    builder: (context, ThemeNotifier notifier, child) {
+    builder: (context, ThemeNotifier notifier, child)
+    {
       return MaterialApp(
         title: 'WallClod',
         home: AnimatedSplashScreen(
@@ -53,11 +54,12 @@ class MyApp extends StatelessWidget {
           centered: true,
         ),
       );
-    },
-    ),
-    ),
-    ),
-    );
+      },
+      ),
+      ),
+      ),
+      );
+
   }
 }
 
@@ -130,13 +132,13 @@ class _MyHomePageState extends State<MyHomePage> {
             BubbleBottomBarItem(
               backgroundColor: Color(0xFF5379b1),
               icon: Icon(Icons.wallpaper,color: Colors.blueGrey),
-              title: Text('Wallpaper',style: TextStyle(color: Colors.white),),
+              title: Text('New Arrivals',style: TextStyle(color: Colors.white),),
               activeIcon: Icon(Icons.wallpaper,color: Colors.lightBlue),
             ),
             BubbleBottomBarItem(
               backgroundColor: Color(0xFF5379b1),
               icon: Icon(Icons.collections_rounded,color: Colors.blueGrey),
-              title: Text('Collection',style: TextStyle(color: Colors.white),),
+              title: Text('Collections',style: TextStyle(color: Colors.white),),
               activeIcon: Icon(Icons.collections_rounded,color: Colors.lightGreen),
             ),
             BubbleBottomBarItem(

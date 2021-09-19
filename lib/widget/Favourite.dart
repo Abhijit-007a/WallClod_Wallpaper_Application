@@ -12,7 +12,7 @@ class Favourites extends StatelessWidget {
     return IconButton(
       onPressed: () { function();},
       icon: Icon(FontAwesomeIcons.solidHeart,
-        size: 25,
+        size: 20,
         color: Colors.white,
       ),
     );

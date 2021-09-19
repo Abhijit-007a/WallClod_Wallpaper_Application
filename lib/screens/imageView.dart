@@ -2,9 +2,11 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -112,10 +114,12 @@ class _ImageViewState extends State<ImageView> {
         widget.unPlashResponse.id + '.jpg');
     if (downloaded) {
       InAppNotification().imageDownloaded(
-          context, Icons.done, Theme.of(context).accentColor, 'Downloaded');
+          context, Icons.done, Theme
+          .of(context)
+          .accentColor, 'Wallpaper Downloaded');
     } else {
       InAppNotification().imageDownloaded(
-          context, Icons.error_outline, Colors.red, "Sorry, couldn't download");
+          context, Icons.error_outline, Colors.red, "Sorry, couldn't download wallpaper");
     }
     setState(() {
       loading = false;
@@ -124,8 +128,8 @@ class _ImageViewState extends State<ImageView> {
 
   Future<void> showInformationDialog(BuildContext context) async {
     return await showDialog(context: context,
-        builder: (context){
-          return StatefulBuilder(builder: (context,setState){
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
               elevation: 30,
               backgroundColor: Color(0xFF272727),
@@ -137,116 +141,186 @@ class _ImageViewState extends State<ImageView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.wallpaper,color: Colors.white,size: 25,),
+                  Icon(Icons.wallpaper, color: Colors.white, size: 25,),
                   SizedBox(height: 20.0,),
-                  Text("Set Wallpaper",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,letterSpacing: 3),),
+                  Text("Set Wallpaper", style: TextStyle(color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      letterSpacing: 3),),
                   SizedBox(height: 15.0,),
-                  Text("For which screen do you want to set this wallpaper ?",style: TextStyle(color: Colors.white54,fontWeight: FontWeight.w400,fontSize: 17,),),
+                  Text("For which screen do you want to set this wallpaper ?",
+                    style: TextStyle(color: Colors.white54,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 17,),),
                   SizedBox(height: 15.0,),
                   ElevatedButton(
                       style: ButtonStyle(
                         elevation: MaterialStateProperty.all(10),
-                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF2b3f5c)),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            side: BorderSide(color: Color(0xFF2b3f5c))
-                          ),
-                        ),
-                      ),
-                      onPressed: (){setLockscreenWallpaper();},
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 17.0,right: 17.0,top: 7.0,bottom: 7.0),
-                        child: Text("Set Lock Screen Wallpaper",style: TextStyle(fontSize: 16),),
-                      )
-                  ),
-                  SizedBox(height: 5.0,),
-                  ElevatedButton(
-                      style: ButtonStyle(
-                        elevation: MaterialStateProperty.all(10),
-                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF2b3f5c)),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(
+                            0xFF2b3f5c)),
+                        shape: MaterialStateProperty.all<
+                            RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               side: BorderSide(color: Color(0xFF2b3f5c))
                           ),
                         ),
                       ),
-                      onPressed: (){setHomescreenWallpaper();},
+                      onPressed: () {
+                        setLockscreenWallpaper();
+                      },
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 17.0,right: 17.0,top: 7.0,bottom: 7.0),
-                        child: Text("Set Home Screen Wallpaper",style: TextStyle(fontSize: 16),),
+                        padding: const EdgeInsets.only(
+                            left: 17.0, right: 17.0, top: 7.0, bottom: 7.0),
+                        child: Text(
+                          "Set Lock Screen Wallpaper", style: TextStyle(
+                            fontSize: 16),),
                       )
                   ),
                   SizedBox(height: 5.0,),
                   ElevatedButton(
                       style: ButtonStyle(
                         elevation: MaterialStateProperty.all(10),
-                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF2b3f5c)),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(
+                            0xFF2b3f5c)),
+                        shape: MaterialStateProperty.all<
+                            RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               side: BorderSide(color: Color(0xFF2b3f5c))
                           ),
                         ),
                       ),
-                      onPressed: (){setBothscreenWallpaper();},
+                      onPressed: () {
+                        setHomescreenWallpaper();
+                      },
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 17.0,right: 17.0,top: 7.0,bottom: 7.0),
-                        child: Text("Set Both Screen Wallpaper",style: TextStyle(fontSize: 16),),
+                        padding: const EdgeInsets.only(
+                            left: 17.0, right: 17.0, top: 7.0, bottom: 7.0),
+                        child: Text(
+                          "Set Home Screen Wallpaper", style: TextStyle(
+                            fontSize: 16),),
                       )
                   ),
                   SizedBox(height: 5.0,),
                   ElevatedButton(
                       style: ButtonStyle(
                         elevation: MaterialStateProperty.all(10),
-                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF2b3f5c)),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(
+                            0xFF2b3f5c)),
+                        shape: MaterialStateProperty.all<
+                            RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               side: BorderSide(color: Color(0xFF2b3f5c))
                           ),
                         ),
                       ),
-                      onPressed: (){Navigator.pop(context);},
+                      onPressed: () {
+                        setBothscreenWallpaper();
+                      },
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 17.0,right: 17.0,top: 7.0,bottom: 7.0),
-                        child: Text("Cancel",style: TextStyle(fontSize: 16),),
+                        padding: const EdgeInsets.only(
+                            left: 17.0, right: 17.0, top: 7.0, bottom: 7.0),
+                        child: Text(
+                          "Set Both Screen Wallpaper", style: TextStyle(
+                            fontSize: 16),),
+                      )
+                  ),
+                  SizedBox(height: 5.0,),
+                  ElevatedButton(
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all(10),
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(
+                            0xFF2b3f5c)),
+                        shape: MaterialStateProperty.all<
+                            RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              side: BorderSide(color: Color(0xFF2b3f5c))
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 17.0, right: 17.0, top: 7.0, bottom: 7.0),
+                        child: Text("Cancel", style: TextStyle(fontSize: 16),),
                       )
                   ),
                 ],
               ),
             );
           });
-        });
+        }).then((exit){
+      if (exit == null) return;
+
+      if (exit) {
+        // user pressed Yes button
+      } else {
+        // user pressed No button
+      }
+    });
   }
 
+  void dismissAlertDialogue(){
+    Navigator.pop(context);
+  }
 
   Future<void> setHomescreenWallpaper() async {
     int location = WallpaperManager.HOME_SCREEN;
 
-    var file = await DefaultCacheManager().getSingleFile(widget.unPlashResponse.urls.regular);
-    await WallpaperManager.setWallpaperFromFile(file.path, location);
+    var file = await DefaultCacheManager().getSingleFile(
+        widget.unPlashResponse.urls.regular);
+    try {
+      await WallpaperManager.setWallpaperFromFile(file.path, location);
+      InAppNotification().imageDownloaded(
+          context, Icons.done, Theme.of(context).accentColor, 'Home Screen Wallpaper Set Successfully');
+    } on PlatformException {
+      InAppNotification().imageDownloaded(
+          context, Icons.done, Theme.of(context).accentColor,'Failed to get wallpaper.');
+    }
+    dismissAlertDialogue();
   }
 
   Future<void> setLockscreenWallpaper() async {
     int location = WallpaperManager.LOCK_SCREEN;
 
-    var file = await DefaultCacheManager().getSingleFile(widget.unPlashResponse.urls.regular);
-    await WallpaperManager.setWallpaperFromFile(file.path, location);
+    var file = await DefaultCacheManager().getSingleFile(
+        widget.unPlashResponse.urls.regular);
+    try {
+      await WallpaperManager.setWallpaperFromFile(file.path, location);
+      InAppNotification().imageDownloaded(
+          context, Icons.done, Theme.of(context).accentColor, 'Lock Screen Wallpaper Set Successfully');
+    } on PlatformException {
+      InAppNotification().imageDownloaded(
+          context, Icons.done, Theme.of(context).accentColor,'Failed to get wallpaper.');
+    }
+    dismissAlertDialogue();
   }
 
   Future<void> setBothscreenWallpaper() async {
     int location = WallpaperManager.BOTH_SCREENS;
 
-    var file = await DefaultCacheManager().getSingleFile(widget.unPlashResponse.urls.regular);
-    await WallpaperManager.setWallpaperFromFile(file.path, location);
+    var file = await DefaultCacheManager().getSingleFile(
+        widget.unPlashResponse.urls.regular);
+    try {
+      await WallpaperManager.setWallpaperFromFile(file.path, location);
+      InAppNotification().imageDownloaded(
+          context, Icons.done, Theme.of(context).accentColor, 'Both Screen Wallpaper Set Successfully');
+    } on PlatformException {
+      InAppNotification().imageDownloaded(
+          context, Icons.done, Theme.of(context).accentColor,'Failed to get wallpaper.');
+    }
+    dismissAlertDialogue();
   }
 
   Future<void> likeUnlikeImage(favImageProvider) async {
     final dbHelper = FavImageDatabaseHelper.instance;
     final hasData =
-        await dbHelper.hasData(widget.unPlashResponse.id.toString());
+    await dbHelper.hasData(widget.unPlashResponse.id.toString());
     if (!hasData) {
       FavImage favImage = new FavImage(
         widget.unPlashResponse.id.toString(),
@@ -275,14 +349,14 @@ class _ImageViewState extends State<ImageView> {
   }
 
   void _onHorizontalSwipe(SwipeDirection direction) {
-    if (direction == SwipeDirection.left) {
-    } else {}
+    if (direction == SwipeDirection.left) {} else {}
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color(0xFF272727),
+      backgroundColor: Color(0xFF272727),
       body: SimpleGestureDetector(
         onVerticalSwipe: _onVerticalSwipe,
         onHorizontalSwipe: _onHorizontalSwipe,
@@ -298,64 +372,117 @@ class _ImageViewState extends State<ImageView> {
             value: progress,
           ),
         )
-        : Stack(
+            : Stack(
           children: [
-            Hero(
-              tag: widget.unPlashResponse.id,
-              child: InteractiveViewer(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: OctoImage(
-                    image: CachedNetworkImageProvider(
-                      widget.unPlashResponse.urls.regular,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Hero(
+                tag: widget.unPlashResponse.id,
+                child: InteractiveViewer(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: OctoImage(
+                      image: CachedNetworkImageProvider(
+                        widget.unPlashResponse.urls.regular,
+                      ),
+                      errorBuilder: OctoError.icon(color: Colors.red),
+                      fit: BoxFit.fitHeight,
                     ),
-                    /*placeholderBuilder: (context) => Center(
-                      child: GradientText("WallClod",
-                          gradient: LinearGradient(colors: [
-                            Color.fromRGBO(254, 225, 64, 1),
-                            Color.fromRGBO(245, 87, 108, 1),
-                          ]),
-                          style: TextStyle(
-                            fontSize: 47,
-                            letterSpacing: 1,
-                          ),
-                          textAlign: TextAlign.center),
-                    ),*/
-                    errorBuilder: OctoError.icon(color: Colors.red),
-                    fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-               Padding(
-                padding: const EdgeInsets.only(left: 15,right: 15,bottom: 20),
-                child: Container(
-                  height:MediaQuery.of(context).size.height * 0.10,
-                  decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                      gradient: new LinearGradient(
-                        colors: [Color(0xFF272727), Color(0xFF272727)],
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft
-                      ),
+            Positioned(
+              bottom: 20.0,
+              right: 10.0,
+              left: 10.0,
+              child: Container(
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * 0.185,
+                decoration: new BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
                   ),
-                  child: Row(
+                  gradient: new LinearGradient(
+                      colors: [Color(0xFF272727), Color(0xFF272727)],
+                      begin: Alignment.centerRight,
+                      end: Alignment.centerLeft
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50.0, top: 12.0,right: 50.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          CircularProfileAvatar('',
+                            child: Image.network(widget.unPlashResponse.user
+                                .profileImage.medium),
+                            //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
+                            radius: 22,
+                            borderWidth: 2,
+                            borderColor: Colors.white,
+                            // sets radius, default 50.0
+                            elevation: 10,
+                            // sets elevation (shadow of the profile picture), default value is 0.0
+                            cacheImage: true,
+                            // allow widget to cache image against provided url
+                            imageFit: BoxFit.cover,
+                          ),
+                          SizedBox(width: 20.0,),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(widget.unPlashResponse.user.name,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16),),
+                              Text("Powered by Unsplash", style: TextStyle(
+                                  color: Colors.white, fontSize: 12),),
+                            ],
+                          ),
+                          // new Spacer(),
+                          // IconButton(
+                          //   onPressed: () {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //         builder: (context) => AboutPhotographer(),
+                          //       ),
+                          //     );
+                          //   },
+                          //   alignment: Alignment.bottomRight,
+                          //   icon: Icon(Icons.info,
+                          //     size: 22,
+                          //     color: Colors.white,
+                          //   ),
+                          // ),
+                        ]
+                    ),
+                  ),
+                  SizedBox(height: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.019),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       IconButton(
-                        onPressed: (){
+                        onPressed: () {
                           Navigator.pop(context);
                         },
                         icon: Icon(FontAwesomeIcons.arrowLeft,
-                          size: 25,
+                          size: 20,
                           color: Colors.white,
                         ),
                       ),
@@ -366,11 +493,11 @@ class _ImageViewState extends State<ImageView> {
                             });
                           }),
                       IconButton(
-                        onPressed: (){
+                        onPressed: () {
                           downloadFile();
                         },
                         icon: Icon(Icons.download_sharp,
-                          size: 30,
+                          size: 25,
                           color: Colors.white,
                         ),
                       ),
@@ -379,15 +506,14 @@ class _ImageViewState extends State<ImageView> {
                           showInformationDialog(context);
                         },
                         icon: Icon(Icons.wallpaper,
-                          size: 30,
+                          size: 23,
                           color: Colors.white,
                         ),
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-            ],
             ),
           ],
         ),
@@ -395,3 +521,4 @@ class _ImageViewState extends State<ImageView> {
     );
   }
 }
+

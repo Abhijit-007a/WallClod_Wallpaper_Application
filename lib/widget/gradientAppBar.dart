@@ -32,6 +32,7 @@ class AppAppbar extends StatelessWidget {
     var mediaQuery = MediaQuery.of(context);
     DeviceScreenType deviceScreenType = getDeviceType(mediaQuery);
     return SliverAppBar(
+      backgroundColor: Color(0xFF2b3f5c),
       expandedHeight: 364,
       pinned: deviceScreenType == DeviceScreenType.Tablet ||
               deviceScreenType == DeviceScreenType.Desktop

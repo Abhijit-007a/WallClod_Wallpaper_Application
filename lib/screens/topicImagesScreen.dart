@@ -140,7 +140,7 @@ class _TopicImagesScreenState extends State<TopicImagesScreen> {
                         },
                         child: Container(
                           margin:
-                              EdgeInsets.only(left: 4.0, right: 4.0, top: 8),
+                              EdgeInsets.only(left: 8.0, right: 8.0, top: 8),
                           child: Hero(
                             tag: item.id,
                             child: AppNetWorkImage(
@@ -155,8 +155,8 @@ class _TopicImagesScreenState extends State<TopicImagesScreen> {
                     }
                   },
                   staggeredTileBuilder: (int index) => StaggeredTile.count(1, 1.5),
-                  mainAxisSpacing: 5.0,
-                  crossAxisSpacing: 5.0,
+                  mainAxisSpacing: 6.0,
+                  crossAxisSpacing: 0.0,
                 ),
         ],
       ),

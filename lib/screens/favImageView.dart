@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_gesture_detector/simple_gesture_detector.dart';
 import 'package:wall_clod/database/dataBaseHelper/database_helper.dart';
 import 'package:wall_clod/database/data_modal/favImage.dart';
+import 'package:wall_clod/modal/responeModal.dart';
 import 'package:wall_clod/provider/favImageProvider.dart';
 import 'package:wall_clod/widget/CustomNotificationOnPage.dart';
 import 'package:wall_clod/widget/Favourite.dart';
@@ -21,9 +23,11 @@ import 'package:wall_clod/widget/inAppNotificaion.dart';
 import 'package:wallpaper_manager/wallpaper_manager.dart';
 
 class FavImageView extends StatefulWidget {
-  final FavImage favImage;
 
-  FavImageView({this.favImage});
+  final FavImage favImage;
+  final UnPlashResponse unPlashResponse;
+
+  FavImageView({ Key key,this.favImage,this.unPlashResponse}) : super(key: key);
 
   @override
   _FavImageViewState createState() => _FavImageViewState();
@@ -316,84 +320,111 @@ class _FavImageViewState extends State<FavImageView> {
                         ),
                       ),
                     ),
-                    /*placeholderBuilder: (context) => Center(
-                      child: GradientText("WallClod",
-                          gradient: LinearGradient(colors: [
-                            Color.fromRGBO(254, 225, 64, 1),
-                            Color.fromRGBO(245, 87, 108, 1),
-                          ]),
-                          style: TextStyle(
-                            fontSize: 47,
-                            letterSpacing: 1,
-                          ),
-                          textAlign: TextAlign.center),
-                    ),*/
                     errorWidget: (context, url, error) => Icon(Icons.error),
-
                   ),
                 ),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 15,right: 15,bottom: 20),
-                  child: Container(
-                    height:MediaQuery.of(context).size.height * 0.10,
-                    decoration: new BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      gradient: new LinearGradient(
-                          colors: [Color(0xFF272727), Color(0xFF272727)],
-                          begin: Alignment.centerRight,
-                          end: Alignment.centerLeft
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          onPressed: (){
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(FontAwesomeIcons.arrowLeft,
-                            size: 25,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Consumer<FavImageProvider>(
-                            builder: (context, favImageProvider, child) {
-                              return Favourites(function: () {
-                                likeUnlikeImage(favImageProvider);
-                              });
-                            }),
-                        IconButton(
-                          onPressed: (){
-                            downloadFile();
-                          },
-                          icon: Icon(Icons.download_sharp,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () async {
-                            showInformationDialog(context);
-                          },
-                          icon: Icon(Icons.wallpaper,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
+            Positioned(
+              bottom: 20.0,
+              right: 10.0,
+              left: 10.0,
+              child: Container(
+                height:MediaQuery.of(context).size.height * 0.10,
+                decoration: new BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  gradient: new LinearGradient(
+                      colors: [Color(0xFF272727), Color(0xFF272727)],
+                      begin: Alignment.centerRight,
+                      end: Alignment.centerLeft
                   ),
                 ),
-              ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 35.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 50.0, top: 12.0),
+                  //   child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children:[
+                  //         CircularProfileAvatar('',
+                  //           child: Image.network(widget.favImage.profileimage),//sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
+                  //           radius: 22, // sets radius, default 50.0
+                  //           elevation: 10,
+                  //           borderWidth: 2,
+                  //           borderColor: Colors.white,// sets elevation (shadow of the profile picture), default value is 0.0
+                  //           cacheImage: true, // allow widget to cache image against provided url
+                  //           imageFit: BoxFit.cover,
+                  //         ),
+                  //         SizedBox(width:30.0 ,),
+                  //         Column(
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           children: [
+                  //             Text(widget.favImage.name,style: TextStyle(color: Colors.white,fontSize: 17),),
+                  //             Text("Powered by Unsplash",style: TextStyle(color: Colors.white,fontSize: 12),),
+                  //           ],
+                  //         ),
+                  //         SizedBox(width: MediaQuery.of(context).size.width * 0.19,),
+                  //         IconButton(
+                  //           onPressed: (){
+                  //
+                  //           },
+                  //           icon: Icon(Icons.info,
+                  //             size: 22,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //       ]
+                  //   ),
+                  // ),
+                  // SizedBox(height: 15.0,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(FontAwesomeIcons.arrowLeft,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Consumer<FavImageProvider>(
+                          builder: (context, favImageProvider, child) {
+                            return Favourites(function: () {
+                              likeUnlikeImage(favImageProvider);
+                            });
+                          }),
+                      IconButton(
+                        onPressed: (){
+                          downloadFile();
+                        },
+                        icon: Icon(Icons.download_sharp,
+                          size: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          showInformationDialog(context);
+                        },
+                        icon: Icon(Icons.wallpaper,
+                          size: 23,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -401,3 +432,4 @@ class _FavImageViewState extends State<FavImageView> {
     );
   }
 }
+

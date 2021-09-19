@@ -12,9 +12,9 @@ class AboutDevBody2 extends StatefulWidget {
 class _AboutDevBody2State extends State<AboutDevBody2> {
 
   String _url1 = 'https://github.com/Abhijit-007a';
-  String _url2 = 'https://www.linkedin.com/in/abhijit--biswas/';
-  String _url3 = 'mailto:biswasavhijit.edu@gmail.com';
-  String _url4 = 'https://www.instagram.com/biswas.abhijit007/';
+  String _url2 = 'https://www.linkedin.com/in/pritishprusty/';
+  String _url3 = 'mailto:pritishprusty07@gmail.com';
+  String _url4 = 'https://www.instagram.com/pritishprusty/';
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _AboutDevBody2State extends State<AboutDevBody2> {
               child: Text("Pritish Prusty",style: TextStyle(color: Colors.white,fontSize: 15,letterSpacing: 2),),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 150.0,right: 110.0,bottom: 10.0),
+              padding: const EdgeInsets.only(left: 150.0,right: 110.0),
               child: Text("Developer",style: TextStyle(color: Colors.white,fontSize: 12,letterSpacing: 2),),
             ),
             SizedBox(height: 10.0,),

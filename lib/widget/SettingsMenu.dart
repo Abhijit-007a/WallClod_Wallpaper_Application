@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 
 class SettingsMenu extends StatelessWidget {
   const SettingsMenu({
@@ -16,11 +14,11 @@ class SettingsMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: TextButton(
         style: TextButton.styleFrom(
           primary: Colors.white,
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.only(left: 15,right: 15, top: 15,bottom: 15),
           shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           backgroundColor: Colors.white24,

@@ -32,9 +32,9 @@ class _AboutDeveloperPageState extends State<AboutDeveloperPage> {
             padding: const EdgeInsets.only(left: 15.0),
             child: AboutDevHeadings(),
           ),
-          SizedBox(height: 10.0,),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           AboutDevCard1(),
-          SizedBox(height: 20,),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
           AboutDevCard2(),
         ],
       )
