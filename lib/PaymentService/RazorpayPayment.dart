@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-import 'package:wall_clod/widget/inAppNotificaion.dart';
+import 'package:wall_clod/Widgets/InAppNotification.dart';
 
 class RazorpayPayment extends StatefulWidget {
   @override

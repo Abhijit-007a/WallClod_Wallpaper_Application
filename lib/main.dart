@@ -6,14 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
-import 'package:wall_clod/provider/favImageProvider.dart';
-import 'package:wall_clod/screens/SettingsPage.dart';
-import 'package:wall_clod/screens/allCategorys.dart';
-import 'package:wall_clod/screens/favImagesPage.dart';
-import 'package:wall_clod/screens/homePage.dart';
-import 'package:wall_clod/screens/searchedImagePage.dart';
-
-import 'helper/Theme.dart';
+import 'package:wall_clod/Providers/favImageProvider.dart';
+import 'package:wall_clod/ScreensAndPages/SettingsPage.dart';
+import 'package:wall_clod/ScreensAndPages/CollectionsPage.dart';
+import 'package:wall_clod/ScreensAndPages/FavImagesPage.dart';
+import 'package:wall_clod/ScreensAndPages/HomePage.dart';
+import 'package:wall_clod/ScreensAndPages/SearchImagePage.dart';
+import 'Helpers''/Theme.dart';
 
 
 
@@ -25,8 +24,15 @@ void main() async{
     DeviceOrientation.portraitUp,
   ]);
 }
+class MyApp extends StatefulWidget {
 
-class MyApp extends StatelessWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+
   @override
   Widget build(BuildContext context) {
     return OverlaySupport(
@@ -46,13 +52,14 @@ class MyApp extends StatelessWidget {
           splash: Image.asset(
               'assets/images/Wallclod.png'
           ),
-          nextScreen: MyHomePage(),
           splashTransition: SplashTransition.slideTransition,
           backgroundColor: Color(0xFF2b3f5c),
           splashIconSize: 500,
           duration: 100,
           centered: true,
+          nextScreen: MyHomePage(),
         ),
+        debugShowCheckedModeBanner: false,
       );
       },
       ),
@@ -75,9 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int currentIndex;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-
     currentIndex =0;
   }
 
@@ -110,8 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   builder: (context) => SearchedImagePage()),
             );
           },
-        child: Icon(Icons.search_rounded,size: 20,),
-        backgroundColor: Colors.red,elevation: 10,
+          child: Icon(Icons.search_rounded,size: 20,),
+      backgroundColor: Colors.red,elevation: 10,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: Padding(
@@ -132,8 +138,8 @@ class _MyHomePageState extends State<MyHomePage> {
             BubbleBottomBarItem(
               backgroundColor: Color(0xFF5379b1),
               icon: Icon(Icons.wallpaper,color: Colors.blueGrey),
-              title: Text('New Arrivals',style: TextStyle(color: Colors.white),),
-              activeIcon: Icon(Icons.wallpaper,color: Colors.lightBlue),
+                  title: Text('New Arrivals',style: TextStyle(color: Colors.white),),
+                  activeIcon: Icon(Icons.wallpaper,color: Colors.lightBlue),
             ),
             BubbleBottomBarItem(
               backgroundColor: Color(0xFF5379b1),

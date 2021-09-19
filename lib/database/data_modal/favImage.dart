@@ -8,13 +8,13 @@ class FavImage {
   final String blurHash;
 
   FavImage(
-    this.imageid,
-    this.raw,
-    this.full,
-    this.regular,
-    this.small,
-    this.thumb,
-    this.blurHash,
+      this.imageid,
+      this.raw,
+      this.full,
+      this.regular,
+      this.small,
+      this.thumb,
+      this.blurHash,
 
-  );
+      );
 }

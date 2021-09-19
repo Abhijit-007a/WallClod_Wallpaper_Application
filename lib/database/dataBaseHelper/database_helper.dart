@@ -20,7 +20,7 @@ class FavImageDatabaseHelper {
 
   FavImageDatabaseHelper._privateConstructor();
   static final FavImageDatabaseHelper instance =
-      FavImageDatabaseHelper._privateConstructor();
+  FavImageDatabaseHelper._privateConstructor();
 
   static Database _database;
   Future<Database> get database async {
@@ -66,7 +66,7 @@ class FavImageDatabaseHelper {
     Database db = await instance.database;
 
     final ret =
-        await db.rawQuery('SELECT * FROM $table ORDER BY $columnId DESC');
+    await db.rawQuery('SELECT * FROM $table ORDER BY $columnId DESC');
     return ret;
   }
 
@@ -81,14 +81,14 @@ class FavImageDatabaseHelper {
   Future<List<Map>> findObjects22(String query) async {
     Database db = await instance.database;
     final ret =
-        await db.rawQuery('SELECT * FROM $table WHERE $imageid=?', [query]);
+    await db.rawQuery('SELECT * FROM $table WHERE $imageid=?', [query]);
     return ret;
   }
 
   Future hasData(String query) async {
     Database db = await instance.database;
     final ret =
-        await db.rawQuery('SELECT * FROM $table WHERE $imageid=?', [query]);
+    await db.rawQuery('SELECT * FROM $table WHERE $imageid=?', [query]);
 
     if (ret.length == 0) {
       return false;
