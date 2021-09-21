@@ -8,6 +8,7 @@ import 'package:wall_clod/Responsiveness/utils/ui_utils.dart';
 import 'package:wall_clod/Widgets/AppNetWorkImage.dart';
 import 'package:wall_clod/Widgets/DismissKeyBoardView.dart';
 import 'package:wall_clod/Widgets/LoadingIndicator.dart';
+import 'package:wall_clod/Widgets/LoadingIndicatorHome.dart';
 import 'package:wall_clod/Widgets/LoadingView.dart';
 import '../APINetworking/networking.dart';
 import 'ImageViewer.dart';
@@ -174,8 +175,8 @@ class _SearchedImagePageState extends State<SearchedImagePage> {
                     )
                   : _loading == true
                       ? SliverFillRemaining(
-                          child: LoadingView(
-                          isSliver: false,
+                          child: LoadingIndicatorHome(
+                          isLoading2: true,
                         ))
                       : SliverStaggeredGrid.countBuilder(
                           crossAxisCount: 2,

@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.VIBRATE" />
    <application
-        android:label="wallClod"
+        android:label="WallClod"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
         <activity

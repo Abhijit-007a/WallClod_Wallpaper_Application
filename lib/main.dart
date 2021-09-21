@@ -138,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
             BubbleBottomBarItem(
               backgroundColor: Color(0xFF5379b1),
               icon: Icon(Icons.wallpaper,color: Colors.blueGrey),
-                  title: Text('New Arrivals',style: TextStyle(color: Colors.white),),
+                  title: Text('New Arrival',style: TextStyle(color: Colors.white),),
                   activeIcon: Icon(Icons.wallpaper,color: Colors.lightBlue),
             ),
             BubbleBottomBarItem(

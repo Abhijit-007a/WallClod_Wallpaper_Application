@@ -47,8 +47,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(
-                    right: 12.0, top: 20.0, bottom: 5.0, left: 55.0),
+                  top: 20.0, bottom: 5.0,),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.feedback,

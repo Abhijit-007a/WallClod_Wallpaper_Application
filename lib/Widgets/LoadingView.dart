@@ -30,7 +30,7 @@ class _LoadingViewState extends State<LoadingView> {
 
   Widget loadingItem(LoadingElement loadingElement, int index) {
     return AspectRatio(
-      aspectRatio: loadingElement.width / loadingElement.height,
+      aspectRatio: 2/4,
       child: GlowingProgressIndicator(
         duration: Duration(milliseconds: (index + 5) * 100),
         child: Container(

@@ -21,17 +21,13 @@ class _AboutDevBody1State extends State<AboutDevBody1> {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ProfileAvatar1(),
-            Padding(
-              padding: const EdgeInsets.only(left: 130.0,right: 110.0,top: 5.0,bottom: 10.0),
-              child: Text("Abhijit Biswas",style: TextStyle(color: Colors.white,fontSize: 15,letterSpacing: 2),),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 155.0,right: 110.0),
-              child: Text("Developer",style: TextStyle(color: Colors.white,fontSize: 12,letterSpacing: 2),),
-            ),
+            Text("Abhijit Biswas",style: TextStyle(color: Colors.white,fontSize: 15,letterSpacing: 2),),
+            SizedBox(height: 7.0,),
+            Text("Developer",style: TextStyle(color: Colors.white,fontSize: 12,letterSpacing: 2),),
             SizedBox(height: 10.0,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

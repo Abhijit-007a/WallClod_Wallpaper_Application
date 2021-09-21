@@ -7,8 +7,7 @@ import 'package:wall_clod/APINetworking/networking.dart';
 import 'package:wall_clod/Models/topic.dart';
 import 'package:wall_clod/ScreensAndPages/CategoriesInsidePage.dart';
 import 'package:wall_clod/Widgets/AppNetWorkImage.dart';
-import 'package:wall_clod/Widgets/LoadingView.dart';
-
+import 'package:wall_clod/Widgets/LoadingIndicatorHome.dart';
 import '../Helpers/helper.dart';
 
 class AllCategoryScreen extends StatefulWidget {
@@ -69,11 +68,10 @@ class _AllCategoryScreenState extends State<AllCategoryScreen>
   Widget build(BuildContext context) {
     //var cellNumber = Helper().getMobileOrientation(context);
     return topicsList.length == 0
-        ? LoadingView(
-            isSliver: false,
+        ? LoadingIndicatorHome(
+            isLoading2: true,
           )
-        :
-             StaggeredGridView.countBuilder(
+        : StaggeredGridView.countBuilder(
               padding: const EdgeInsets.only(top: 10.0,bottom: 0.0,left: 10.0,right: 10.0),
               physics: BouncingScrollPhysics(),
               crossAxisCount: 2,

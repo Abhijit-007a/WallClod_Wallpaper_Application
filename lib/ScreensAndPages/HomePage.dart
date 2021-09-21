@@ -10,6 +10,7 @@ import 'package:wall_clod/Models/responseModal.dart';
 import 'package:wall_clod/Widgets/AppNetWorkImage.dart';
 import 'package:wall_clod/Widgets/ErrorScreen.dart';
 import 'package:wall_clod/Widgets/LoadingIndicator.dart';
+import 'package:wall_clod/Widgets/LoadingIndicatorHome.dart';
 import 'package:wall_clod/Widgets/LoadingView.dart';
 import '../APINetworking/networking.dart';
 import '../Helpers/helper.dart';
@@ -124,8 +125,8 @@ class _HomePageState extends State<HomePage>
     //var cellNumber = Helper().getMobileOrientation(context);
     return unPlashResponse.length == 0
         ? apiError == null
-            ? LoadingView(
-                isSliver: false,
+            ? LoadingIndicatorHome(
+                isLoading2: true,
               )
             : ErrorScreen(
                 errorMessage: apiError.errors[0],
@@ -146,7 +147,7 @@ class _HomePageState extends State<HomePage>
                 UnPlashResponse item = unPlashResponse[index];
                 return GestureDetector(
                   onTap: () {
-                    Navigator.push(
+                   Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
