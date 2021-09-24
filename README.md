@@ -24,7 +24,7 @@ We also want to thank Unsplash API for providing us with these Images.
 
 Application Screenshots:
 
-<img src="ScreenShots/screen_1.png" height =400><img src="ScreenShots/screen_2.png" height =400><img src="ScreenShots/screen_3.png" height =400><img src="ScreenShots/screen_4.png" height =400><img src="ScreenShots/screen_5.png" height =400><img src="ScreenShots/screen_6.png" height =400><img src="ScreenShots/screen_7.png" height =400><img src="ScreenShots/screen_8.png" height =400>
+<img src="ScreenShots/screen_1.png" height =500><img src="ScreenShots/screen_2.png" height =500><img src="ScreenShots/screen_3.png" height =500><img src="ScreenShots/screen_4.png" height =500><img src="ScreenShots/screen_5.png" height =500><img src="ScreenShots/screen_6.png" height =500><img src="ScreenShots/screen_7.png" height =500><img src="ScreenShots/screen_8.png" height =500>
 
 
 
