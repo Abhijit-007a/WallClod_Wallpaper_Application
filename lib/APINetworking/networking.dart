@@ -5,7 +5,7 @@ import 'package:wall_clod/Models/topic.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-const apiKey = "A6rYPZ-cnf0U9kwuibBnI2KQS4nHxWnqgX8xMqH3bg0";
+const apiKey = "S9NdAgRednOojzI_OwNCBZqUPsJi71AA7IsiF60MBok";
 const apiUrl = 'https://api.unsplash.com/photos?client_id=$apiKey';
 const mainUrl = 'https://api.unsplash.com';
 const per_page = "per_page=30";
@@ -30,8 +30,8 @@ class FetchImages {
     }
   }
 
-  Future getCategory() async {
-    String url = '$mainUrl/topics?client_id=$apiKey&$per_page';
+  Future getCategory(int pageNumber) async {
+    String url = '$mainUrl/collections?client_id=$apiKey&$per_page&page=$pageNumber';
     http.Response response = await http.get(Uri.parse(url));
 
     List<Topics> topicsList = [];
@@ -49,7 +49,7 @@ class FetchImages {
 
   Future getTopicImage(int pageNumber, String topicId) async {
     String url =
-        '$mainUrl/topics/$topicId/photos?client_id=$apiKey&$per_page&page=$pageNumber';
+        '$mainUrl/collections/$topicId/photos?client_id=$apiKey&$per_page&page=$pageNumber';
     http.Response response = await http.get(Uri.parse(url));
 
     List<UnPlashResponse> unPlashResponseList = [];

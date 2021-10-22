@@ -8,6 +8,7 @@ import 'package:wall_clod/Helpers/helper.dart';
 import 'package:wall_clod/Models/responseModal.dart';
 import 'package:wall_clod/Widgets/AppNetWorkImage.dart';
 import 'package:wall_clod/Widgets/LoadingIndicator.dart';
+import 'package:wall_clod/Widgets/LoadingIndicatorHome.dart';
 import 'package:wall_clod/Widgets/LoadingView.dart';
 import '../APINetworking/networking.dart';
 import '../Models/appError.dart';
@@ -125,16 +126,16 @@ class _TrendingWallpaperPageState extends State<TrendingWallpaperPage>
     var cellNumber = Helper().getMobileOrientation(context);
     return unPlashResponse.length == 0
         ? apiError == null
-            ? LoadingView(
-                isSliver: false,
+            ? LoadingIndicatorHome(
+              isLoading2: true,
               )
             : ErrorScreen(
                 errorMessage: apiError.errors[0],
                 tryAgain: getTrendingImages,
               )
         : StaggeredGridView.countBuilder(
-            padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 6.0),
-            crossAxisCount: cellNumber,
+            padding: const EdgeInsets.only(top: 15.0,bottom: 0.0,left: 15.0,right: 15.0),
+            crossAxisCount: 2,
             // physics: BouncingScrollPhysics(),
             controller: _scrollController,
             itemCount: unPlashResponse.length + 1,
@@ -167,9 +168,10 @@ class _TrendingWallpaperPageState extends State<TrendingWallpaperPage>
                 );
               }
             },
-            staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
-            mainAxisSpacing: 8.0,
-            crossAxisSpacing: 8.0,
+      staggeredTileBuilder: (int index) => StaggeredTile.count(1, 1.5),
+
+      mainAxisSpacing: 15.0,
+      crossAxisSpacing: 15.0,
           );
   }
 }

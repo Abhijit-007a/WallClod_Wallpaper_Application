@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:wall_clod/Models/appError.dart';
 import 'package:wall_clod/Models/responseModal.dart';
+import 'package:wall_clod/ScreensAndPages/SearchImagePage.dart';
 import 'package:wall_clod/Widgets/AppNetWorkImage.dart';
 import 'package:wall_clod/Widgets/ErrorScreen.dart';
 import 'package:wall_clod/Widgets/LoadingIndicator.dart';
 import 'package:wall_clod/Widgets/LoadingIndicatorHome.dart';
-import 'package:wall_clod/Widgets/LoadingView.dart';
 import '../APINetworking/networking.dart';
 import '../Helpers/helper.dart';
 import 'ImageViewer.dart';
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage>
     _scrollController.dispose();
     super.dispose();
   }
-
+  
   @override
   // ignore: must_call_super
   Widget build(BuildContext context) {
@@ -132,45 +132,104 @@ class _HomePageState extends State<HomePage>
                 errorMessage: apiError.errors[0],
                 tryAgain: getLatestImages,
               )
-        :
-        StaggeredGridView.countBuilder(
-            padding: const EdgeInsets.only(top: 15.0,bottom: 0.0,left: 15.0,right: 15.0),
-            crossAxisCount: 2,
-            controller: _scrollController,
-            itemCount: unPlashResponse.length + 1,
-            itemBuilder: (BuildContext context, int index) {
-              if (index == unPlashResponse.length) {
-                return LoadingIndicator(
-                  isLoading: true,
-                );
-              } else {
-                UnPlashResponse item = unPlashResponse[index];
-                return GestureDetector(
-                  onTap: () {
-                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ImageView(unPlashResponse: unPlashResponse[index]),
-                      ),
-                    );
+        : Stack(
+          alignment: Alignment.bottomCenter,
+            children: [
+              Expanded(
+                child: StaggeredGridView.countBuilder(
+                  padding: const EdgeInsets.only(top: 15.0,bottom: 0.0,left: 15.0,right: 15.0),
+                  crossAxisCount: 2,
+                  controller: _scrollController,
+                  itemCount: unPlashResponse.length + 1,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index == unPlashResponse.length) {
+                      return LoadingIndicator(
+                        isLoading: true,
+                      );
+                    } else {
+                      UnPlashResponse item = unPlashResponse[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ImageView(unPlashResponse: unPlashResponse[index]),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: item.id,
+                          child: AppNetWorkImage(
+                            blurHash: item.blurHash,
+                            height: item.height,
+                            imageUrl: item.urls.small,
+                            width: item.width,
+                          ),
+                        ),
+                      );
+                    }
                   },
-                  child: Hero(
-                    tag: item.id,
-                    child: AppNetWorkImage(
-                      blurHash: item.blurHash,
-                      height: item.height,
-                      imageUrl: item.urls.small,
-                      width: item.width,
-                    ),
-                  ),
+                  staggeredTileBuilder: (int index) => StaggeredTile.count(1, 1.5),
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
+                ),
+              ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        SearchedImagePage()),
                 );
-              }
-            },
-            staggeredTileBuilder: (int index) => StaggeredTile.count(1, 1.5),
-
-            mainAxisSpacing: 15.0,
-            crossAxisSpacing: 15.0,
-    );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10.0,left: 10.0,right: 10.0,bottom: 0.0),
+                child: ClipRect(
+                  child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 15),
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: double.infinity,
+                      child: Row(
+                        children:[
+                          IconButton(
+                              icon: Icon(Icons.search_rounded,color: Colors.black),
+                            onPressed: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SearchedImagePage()),
+                              );
+                            },
+                          ),
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.14),
+                          Text("Search for Wallpapers",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 2,
+                              )
+                          ),
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0xFF272727),
+                            offset: Offset(0.0, 15), //(x,y)
+                            blurRadius: 12.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      ),
+                  ),
+                ),
+              ),
+            )
+          ]
+        );
   }
 }

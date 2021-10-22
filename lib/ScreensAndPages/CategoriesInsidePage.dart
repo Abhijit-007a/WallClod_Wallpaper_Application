@@ -98,17 +98,47 @@ class _TopicImagesScreenState extends State<TopicImagesScreen> {
       backgroundColor: Color(0xFF272727),
       body: CustomScrollView(
         controller: _scrollController,
-        slivers: <Widget>[
-          AppAppbar(
-            title: widget.topics.title,
-            imageUrl: isTablet
-                ? widget.topics.coverPhoto.urls.regular
-                : widget.topics.coverPhoto.urls.small,
-            subTitle: widget.topics.description,
-            blurHash: widget.topics.coverPhoto.blurHash,
-            height: widget.topics.coverPhoto.height,
-            width: widget.topics.coverPhoto.width,
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 300,
+            backgroundColor: Color(0xFF272727),
+            floating: true,
+            pinned: true,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                image: new DecorationImage(
+                  fit: BoxFit.cover,
+                  colorFilter:
+                  ColorFilter.mode(Colors.black.withOpacity(0.4),
+                      BlendMode.dstATop),
+                  image: new NetworkImage(
+                    widget.topics.coverPhoto.urls.regular,
+                  ),
+                ),
+              ),
+              child: FlexibleSpaceBar(
+                title: Text(widget.topics.title,style: TextStyle(letterSpacing: 2,),),
+                centerTitle: true,
+                ),
+              ),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back,color: Colors.white,),
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+            ),
           ),
+          // AppAppbar(
+          //   title: widget.topics.title,
+          //   imageUrl: isTablet
+          //       ? widget.topics.coverPhoto.urls.regular
+          //       : widget.topics.coverPhoto.urls.small,
+          //   subTitle: widget.topics.description,
+          //   blurHash: widget.topics.coverPhoto.blurHash,
+          //   height: widget.topics.coverPhoto.height,
+          //   width: widget.topics.coverPhoto.width,
+          // ),
           unPlashResponse.length == 0
               ? apiError == null
                   ? LoadingView(

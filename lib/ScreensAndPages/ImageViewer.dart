@@ -13,7 +13,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gesture_detector/simple_gesture_detector.dart';
-import 'package:wall_clod/Widgets/LoadingIndicatorHome.dart';
 import 'package:wall_clod/database/dataBaseHelper/database_helper.dart';
 import 'package:wall_clod/database/data_modal/favImage.dart';
 import 'package:wall_clod/Models/responseModal.dart';

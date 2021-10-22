@@ -78,6 +78,10 @@ dependencies:
   share: any
 #payment gateways plugin
   razorpay_flutter: ^1.2.7
+  image_picker:
+  extended_image: ^4.2.0
+  image_editor:
+  gallery_saver:
 
 
 dev_dependencies:
@@ -100,9 +104,11 @@ flutter:
   assets:
     - assets/images/
     - assets/images/helpdesk.png
+    - assets/images/Favourite.png
     - assets/images/information.png
     - assets/images/star.png
     - assets/images/about.png
+    - assets/images/PhotoEditor.png
     - assets/appIcon/1024.png
 
 

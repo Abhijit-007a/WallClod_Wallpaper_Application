@@ -87,7 +87,7 @@ class _FavouriteImagesPageState extends State<FavouriteImagesPage> {
               ),
           ),
           (favImageProvider.favImageList.length == 0)
-              ? Expanded(child: Image.asset('assets/images/Favourites.png'),)
+              ? Expanded(child: Image.asset('assets/images/Favourite.png',height: 250,width: 250,),)
               : Expanded(
                   child: Padding(
                     padding:

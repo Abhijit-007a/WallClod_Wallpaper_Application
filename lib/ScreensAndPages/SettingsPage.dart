@@ -19,32 +19,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Column(
+    return Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12.0,top: 0.0,bottom: 12.0, left: 137.0),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.settings,
-                  color: Colors.blue,
-                ),
-                SizedBox(width: 15,),
-                Text("Settings",
-                  style: TextStyle(
-                    fontSize: 17,
-                    letterSpacing: 3,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox( height: MediaQuery.of(context).size.height * 0.00001,),
-          Divider(height: 5,thickness: 2,color: Colors.white24,),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
+          SizedBox(height:MediaQuery.of(context).size.height * 0.05 ,),
           SettingsMenu(
             text: "Help & Support Center",
             icon: "assets/images/helpdesk.png",
@@ -73,7 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
             text: "Recommend your friends",
             icon: "assets/images/share.png",
             press: () {
-              Share.share('https://www.youtube.com/',subject: "Hey I found the best wallpaper application the Play Store. Have a try");
+              Share.share('https://www.youtube.com/',subject: "Hey I found the best wallpaper application in the Play Store. Have a try");
             },
           ),
           SettingsMenu(
@@ -101,7 +78,6 @@ class _SettingsPageState extends State<SettingsPage> {
             press: () {},
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
-          Divider(height: 5,thickness: 2,color: Colors.white24,),
           Padding(
             padding: const EdgeInsets.only(top: 25.0,bottom: 10.0,),
             child: Column(
@@ -127,7 +103,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
         ],
-      ),
     );
   }
 
