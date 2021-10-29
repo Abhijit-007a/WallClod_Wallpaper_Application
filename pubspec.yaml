@@ -65,6 +65,7 @@ dependencies:
 # To connect the feedback form to firebase and store it
   cloud_firestore: ^2.5.2
   firebase_core: ^1.0.3
+  firebase_storage:
 # create a circular profile picture in About Developers
   circular_profile_avatar: ^2.0.5
 # Icons for the application.
@@ -109,7 +110,7 @@ flutter:
     - assets/images/star.png
     - assets/images/about.png
     - assets/images/PhotoEditor.png
-    - assets/appIcon/1024.png
+    - assets/appIcon/Loading.png
 
 
 

@@ -79,7 +79,7 @@ class _SaveImageScreenState extends State<SaveImageScreen> {
               height: MediaQuery
                   .of(context)
                   .size
-                  .height * 0.185,
+                  .height * 0.11,
               decoration: new BoxDecoration(
                 borderRadius: BorderRadius.all(
                   Radius.circular(20),
@@ -100,11 +100,20 @@ class _SaveImageScreenState extends State<SaveImageScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 50.0, top: 12.0, right: 50.0),
+                      left: 20.0, top: 11.0, right: 20.0,bottom: 10.0),
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(FontAwesomeIcons.arrowLeft,
+                            size: 20,
+                            color: Colors.white,
+                          ),
+                        ),
                         CircularProfileAvatar('https://images.unsplash.com/photo-1488554378835-f7acf46e6c98?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsYWNrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
                           //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
                           radius: 22,
@@ -117,65 +126,20 @@ class _SaveImageScreenState extends State<SaveImageScreen> {
                           // allow widget to cache image against provided url
                           imageFit: BoxFit.cover,
                         ),
-                        SizedBox(width: 20.0,),
                         Text("My Captures", style: TextStyle(color: Colors.white, fontSize: 16),),
-                        // new Spacer(),
-                        // IconButton(
-                        //   onPressed: () {
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) => AboutPhotographer(),
-                        //       ),
-                        //     );
-                        //   },
-                        //   alignment: Alignment.bottomRight,
-                        //   icon: Icon(Icons.info,
-                        //     size: 22,
-                        //     color: Colors.white,
-                        //   ),
-                        // ),
+                        IconButton(
+                          onPressed: savedImage
+                              ? null
+                              : () {
+                            saveImage();
+                          },
+                          icon: Icon(Icons.download_sharp,
+                            size: 25,
+                            color: Colors.white,
+                          ),
+                        ),
                       ]
                   ),
-                ),
-                SizedBox(height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * 0.019),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(FontAwesomeIcons.arrowLeft,
-                        size: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                    IconButton(
-                    onPressed: savedImage
-                    ? null
-                        : () {
-                    saveImage();
-                    },
-                    icon: Icon(Icons.download_sharp,
-                        size: 25,
-                        color: Colors.white,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () async {
-                        //String text =ImageUtils.fileToBase64(File(image.path));
-                        //await setWallpaper(context: context, imgUrl: text);
-                      },
-                      icon: Icon(Icons.wallpaper,
-                        size: 23,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

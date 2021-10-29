@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:wall_clod/Providers/favImageProvider.dart';
+import 'package:wall_clod/ScreensAndPages/FeaturedPage.dart';
 import 'package:wall_clod/ScreensAndPages/SettingsPage.dart';
 import 'package:wall_clod/ScreensAndPages/CollectionsPage.dart';
 import 'package:wall_clod/ScreensAndPages/FavImagesPage.dart';
@@ -122,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
           buildPage(HomePage()),
           buildPage(TrendingWallpaperPage()),
           buildPage(AllCategoryScreen()),
-          buildPage(AllCategoryScreen()),
+          buildPage(FeaturedImagePage()),
           buildPage(PhotoEditor()),
           buildPage(FavouriteImagesPage()),
           buildPage(SettingsPage()),

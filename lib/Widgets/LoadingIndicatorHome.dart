@@ -9,11 +9,11 @@ class LoadingIndicatorHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: isLoading2 ? 90 : double.infinity,
+        width: isLoading2 ? 70 : double.infinity,
         height: 90,
         child: isLoading2
             ?GlowingProgressIndicator(duration: Duration(milliseconds: 500),
-            child: Image.asset('assets/appIcon/1024.png'),
+            child: Image.asset('assets/appIcon/Loading.png'),
         )
             : Center(child: Text("Could not load Images")),
       ),
